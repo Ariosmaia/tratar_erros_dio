@@ -10,8 +10,8 @@ import 'package:tratar_erros_dio/src/shared/custom_dio/custom.dio.dart';
 class HomeModule extends ModuleWidget {
   @override
   List<Bloc> get blocs => [
-        Bloc((i) => CreateBloc(HomeModule.to.getDependency<HomeRepository>())),
-        Bloc((i) => HomeBloc(HomeModule.to.getDependency<HomeRepository>()), singleton: false),
+        Bloc((i) => CreateBloc(HomeModule.to.getDependency<HomeRepository>()), singleton: false),
+        Bloc((i) => HomeBloc(HomeModule.to.getDependency<HomeRepository>())),
       ];
 
   @override

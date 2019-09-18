@@ -18,22 +18,25 @@ class _CreatePageState extends State<CreatePage> {
 
   Controller controller;
 
+  //StreamSubscription listenResponse;
+
   @override
   void didChangeDependencies() {
     controller = Controller();
-  /*  listenResponse = bloc.responseOut.listen((data) {
+    /* listenResponse = bloc.responseOut.listen((data) {
       if (data == 201) {
         Timer(Duration(seconds: 1), () {
           widget.onSuccess();
           Navigator.pop(context);
         });
       }
-    });*/
+    }); */
     super.didChangeDependencies();
   }
 
   @override
   void dispose() {
+    //listenResponse.cancel();
     super.dispose();
   }
 
@@ -47,20 +50,26 @@ class _CreatePageState extends State<CreatePage> {
       body: StreamBuilder<int>(
           stream: bloc.responseOut,
           builder: (context, snapshot) {
-            if (snapshot.hasError) return Center(child: Text("${snapshot.error}",style: TextStyle(fontSize: 25)));
+            if (snapshot.hasError)
+              return Center(
+                  child: Text("${snapshot.error}",
+                      style: TextStyle(fontSize: 25)));
 
             if (snapshot.hasData) {
               if (snapshot.data == 0) {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-              } else{
-                Timer(Duration(seconds: 1), (){
-                   Navigator.pop(context);
+              } else {
+                Timer(Duration(seconds: 1), () {
+                  Navigator.pop(context);
                 });
-                return Center(child: Text("Inserido com sucesso!",style: TextStyle(fontSize: 25),));
+                return Center(
+                    child: Text(
+                  "Inserido com sucesso!",
+                  style: TextStyle(fontSize: 25),
+                ));
               }
-            
             } else {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
