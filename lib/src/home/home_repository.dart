@@ -29,6 +29,24 @@ class HomeRepository extends Disposable {
       throw (e.message);
     }
   }
+
+  Future<int> updatePost(Map<String, dynamic> data, int id) async {
+    try {
+      var response = await _client.dio.put("/posts/$id", data: data);
+      return response.statusCode;
+    } on DioError catch (e) {
+      throw (e.message);
+    }
+  }
+
+  /* Future<int> updatePost(Map<String, dynamic> data, int id) async {
+    try {
+      var response = await _client.dio.patch("/posts/$id", data: data);
+      return response.statusCode;
+    } on DioError catch (e) {
+      throw (e.message);
+    }
+  } */
   
   @override
   void dispose() {}

@@ -1,3 +1,4 @@
+import 'package:tratar_erros_dio/src/home/subpages/update/update_bloc.dart';
 import 'package:tratar_erros_dio/src/home/subpages/create/create_bloc.dart';
 import 'package:tratar_erros_dio/src/app_module.dart';
 import 'package:tratar_erros_dio/src/home/home_repository.dart';
@@ -10,7 +11,10 @@ import 'package:tratar_erros_dio/src/shared/custom_dio/custom.dio.dart';
 class HomeModule extends ModuleWidget {
   @override
   List<Bloc> get blocs => [
-        Bloc((i) => CreateBloc(HomeModule.to.getDependency<HomeRepository>()), singleton: false),
+        Bloc((i) => UpdateBloc(HomeModule.to.getDependency<HomeRepository>()),
+            singleton: false),
+        Bloc((i) => CreateBloc(HomeModule.to.getDependency<HomeRepository>()),
+            singleton: false),
         Bloc((i) => HomeBloc(HomeModule.to.getDependency<HomeRepository>())),
       ];
 
